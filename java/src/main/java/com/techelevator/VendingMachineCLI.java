@@ -32,6 +32,7 @@ public class VendingMachineCLI extends Operations {
 
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				feedMoney();
+				purchaseItems();
 			}
 		}
 	}

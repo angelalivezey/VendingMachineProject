@@ -6,9 +6,10 @@ public class Edible {
     private double price;
     private String itemType;
     private String displayMessage;
+    private int inventory;
 
 
-    public static final int MAX_AMOUNT = 5;
+    private static final int MAX_AMOUNT = 5;
 
 
     public Edible (){
@@ -21,6 +22,7 @@ public class Edible {
         this.displayMessage = displayMessage;
         this.row = row;
         this.itemType = itemType;
+        this.inventory = MAX_AMOUNT;
     }
 
     public String getRow() {
@@ -53,6 +55,10 @@ public class Edible {
 
     public void setItemType(String itemType) {
         this.itemType = itemType;
+    }
+
+    public int getInventory(){
+        return inventory;
     }
 
     public String getDisplayMessage() {
