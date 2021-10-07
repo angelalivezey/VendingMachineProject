@@ -1,6 +1,7 @@
 package com.techelevator;
 
 import com.techelevator.view.Edible;
+import com.techelevator.view.Inventory;
 import com.techelevator.view.Menu;
 import com.techelevator.view.Operations;
 
@@ -27,8 +28,8 @@ public class VendingMachineCLI extends Operations {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
-				getItems();
-
+				Inventory newInt = new Inventory();
+				newInt.getItems();
 
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				feedMoney();

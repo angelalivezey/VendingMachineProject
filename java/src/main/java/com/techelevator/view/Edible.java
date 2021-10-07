@@ -16,7 +16,7 @@ public class Edible {
 
     }
 
-    public Edible (String row, String name, double price, String displayMessage,String itemType){
+    public Edible(String row, String name, double price){
         this.name = name;
         this.price = price;
         this.displayMessage = displayMessage;

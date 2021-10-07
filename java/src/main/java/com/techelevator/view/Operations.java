@@ -8,40 +8,8 @@ import java.util.Scanner;
 
 public abstract class Operations {
     double balance = 0.0;
-    List<Edible> vmItems = new ArrayList<Edible>();
+    Inventory inventory = new Inventory();
 
-    public void getItems() {
-        //make return class
-        //move to inventory class
-        File vendingMachineFile = new File("vendingmachine.csv");
-        try (Scanner readVMFile = new Scanner(vendingMachineFile)) {
-            while (readVMFile.hasNextLine()) {
-                String line = readVMFile.nextLine();
-                String[] splitStr = line.split("\\|");
-                Edible vmItem = new Edible();
-                for (int i = 0; i < splitStr.length; i++) {
-                    //A1|Potato Crisps|3.05|Chip
-                    vmItem.setRow(splitStr[0]);
-
-                    vmItem.setName(splitStr[1]);
-
-                    vmItem.setPrice(Double.parseDouble(splitStr[2]));
-
-                    vmItem.setItemType(splitStr[3]);
-
-                    System.out.println(vmItem.getRow() + " " + vmItem.getName() + " " + vmItem.getPrice());
-
-                    vmItems.add(vmItem);
-                    break;
-
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
-            System.exit(-1);
-        }
-        //thoughts: maybe make this void because we don't need to return anything, we just need to be able to do it..?
-    }
 
     public void feedMoney() {
         System.out.println("Please input money in valid, whole dollar amounts:  ");
@@ -60,20 +28,19 @@ public abstract class Operations {
 
     //purchase method:
     public void purchaseItems(){
-        //
-        int inventory; //unsure if need this or not
-        getItems();
+
+        inventory.getItems();
         System.out.println("Select a product:");
         Scanner userInput = new Scanner(System.in);
         String userSelection = userInput.nextLine();
         //if userSelection matches row;
-        Edible row = vmItems.get(0);
+        Edible row = inventory.vmItems.get(0);
 
         if(!userSelection.equals(row)){
             System.out.println("Please input a valid entry. For item in row B2 enter B2.");
         }
 
-        for(Edible item : vmItems){
+        for(Edible item : inventory.vmItems){
 
         }
         //inventory--
