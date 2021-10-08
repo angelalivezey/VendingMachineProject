@@ -61,6 +61,7 @@ public class Edible {
         return inventory;
     }
 
+
     public String getDisplayMessage() {
         return displayMessage;
     }
