@@ -6,59 +6,51 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public abstract class Operations {
+public class Operations {
     double balance = 0.0;
     Inventory inventory = new Inventory();
 
 
-    public void feedMoney() {
-        System.out.println("Please input money in valid, whole dollar amounts:  ");
-        Scanner giveMeMoney = new Scanner(System.in);
-        String moneyGiven = giveMeMoney.nextLine();
-        //add money, increase balance, until the choose to exit out.
-        if (moneyGiven.equals("1") || moneyGiven.equals("2") || moneyGiven.equals("5") || moneyGiven.equals("10")) {
-            balance += Double.parseDouble(moneyGiven);
-            System.out.println("Current Balance Is: " + balance);
-        } else {
-            System.out.println("Please input valid whole dollar amount.");
-        }
-        //LOG
+    public double feedMoney(double moneyGiven) {
+        balance += moneyGiven;
+        System.out.println("Current Balance is: " + "$" + balance);
+        return balance;
 
     }
 
-    //purchase method:
-    public void purchaseItems(){
-
-        inventory.getItems();
-        System.out.println("Select a product:");
-        Scanner userInput = new Scanner(System.in);
-        String userSelection = userInput.nextLine();
+    //purchase method: row
+    public void purchaseItem(String row) {
+        inventory.getVmItems();
+        if ()
         //if userSelection matches row;
-        Edible row = inventory.vmItems.get(0);
+        //purchase exception, try catch
+        //is it in stock
+        //do they have enough $ to buy it
 
-        if(!userSelection.equals(row)){
-            System.out.println("Please input a valid entry. For item in row B2 enter B2.");
-        }
+        //get items that returns inventory's get items
 
-        for(Edible item : inventory.vmItems){
-
-        }
-        //inventory--
-        //take the object, and getInventory
-        //if !inventory > 0, then print "SOLD OUT"
-        //compare price to balance
-
-        //if price > balance, then print "Please add more funds"
-            //feedMoney()
-        //DISPENSE - display message [item.getMessage]
-        //update balance
-        //log purchase
     }
 
+    public List<Edible> getItems() {
+        return inventory.getVmItems();
+    }
 
-    //giveChange
+    //inventory--
+    //take the object, and getInventory
+    //if !inventory > 0, then print "SOLD OUT"
+    //compare price to balance
 
-    //Log
-
-
+    //if price > balance, then print "Please add more funds"
+    //feedMoney()
+    //DISPENSE - display message [item.getMessage]
+    //update balance
+    //log purchase
 }
+
+
+//giveChange
+
+//Log
+
+
+

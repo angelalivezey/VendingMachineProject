@@ -7,9 +7,17 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Inventory {
-    public List<Edible> vmItems = new ArrayList<Edible>();
+    private List<Edible> vmItems = new ArrayList<Edible>();
 
-    public void getItems() {
+    public Inventory(){
+        loadItems();
+    }
+
+    public List<Edible> getVmItems() {
+        return vmItems;
+    }
+
+    private void loadItems() {
         //make return class
         //move to inventory class
         File vendingMachineFile = new File("vendingmachine.csv");
@@ -28,18 +36,17 @@ public class Inventory {
                         Chip chippity = new Chip(splitStr[0],splitStr[1],Double.parseDouble(splitStr[2]));
                         vmItems.add(chippity);
                     } else if(splitStr[3].equalsIgnoreCase("candy")){
-                        Candy uhm = new Candy(splitStr[0],splitStr[1],Double.parseDouble(splitStr[2]));
-                        vmItems.add(uhm);
+                        Candy candyItem = new Candy(splitStr[0],splitStr[1],Double.parseDouble(splitStr[2]));
+                        vmItems.add(candyItem);
                     } else if(splitStr[3].equalsIgnoreCase("drink")){
-                        Drink glug = new Drink(splitStr[0],splitStr[1],Double.parseDouble(splitStr[2]));
-                        vmItems.add(glug);
+                        Drink drinkItem = new Drink(splitStr[0],splitStr[1],Double.parseDouble(splitStr[2]));
+                        vmItems.add(drinkItem);
                     } else {
-                        Gum idk = new Gum(splitStr[0], splitStr[1], Double.parseDouble(splitStr[2]));
-                        vmItems.add(idk);
+                        Gum gumItem = new Gum(splitStr[0], splitStr[1], Double.parseDouble(splitStr[2]));
+                        vmItems.add(gumItem);
                     }
-                    System.out.println(vmItem.getRow() + " " + vmItem.getName() + " " + vmItem.getPrice());
+//                    System.out.println(vmItem.getRow() + " " + vmItem.getName() + " " + vmItem.getPrice());
 
-                    //vmItems.add(vmItem);
                     break;
 
                 }
