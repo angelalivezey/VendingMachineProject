@@ -44,7 +44,9 @@ public class VendingMachineCLI {
             if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
                 List<Edible> items = awesomeVendingMachine.getItems();
                 for (Edible item : items) {
-                    System.out.println(item.getRow() + " " + item.getName() + " " + item.getPrice() + " " + "Inventory left: " + item.getInventory());
+
+                    String price = String.format("$%.2f", item.getPrice());
+                    System.out.println(item.getRow() + " " + item.getName() + " " + price + " Inventory Remaining: " + item.getInventory());
                     System.out.println();
                 }
 
@@ -58,12 +60,16 @@ public class VendingMachineCLI {
                         String moneyChoice = (String) menu.getChoiceFromOptions(FEED_MONEY_MENU);
                         if (moneyChoice.equals(FEED_MENU_OPTION_1)) {
                             awesomeVendingMachine.feedMoney(1.0);
+                            System.out.printf("Current Balance is: $%.2f", awesomeVendingMachine.getBalance());
                         } else if (moneyChoice.equals(FEED_MENU_OPTION_2)) {
                             awesomeVendingMachine.feedMoney(2.0);
+                            System.out.printf("Current Balance is: $%.2f", awesomeVendingMachine.getBalance());
                         } else if (moneyChoice.equals(FEED_MENU_OPTION_5)) {
                             awesomeVendingMachine.feedMoney(5.0);
+                            System.out.printf("Current Balance is: $%.2f", awesomeVendingMachine.getBalance());
                         } else if (moneyChoice.equals(FEED_MENU_OPTION_10)) {
                             awesomeVendingMachine.feedMoney(10.0);
+                            System.out.printf("Current Balance is: $%.2f", awesomeVendingMachine.getBalance());
                         } else {
                             System.out.println("Enter the dollar amount with dollar sign");
                         }
@@ -73,22 +79,30 @@ public class VendingMachineCLI {
                         List<Edible> items = awesomeVendingMachine.getItems();
                         String userRow;
                         for (Edible item : items) {
-                            //TODO change this to use format
                             userRow = item.getRow();
-                            System.out.println(item.getRow() + " " + item.getName() + " " + item.getPrice() + " " + item.getInventory());
+
+                            String price = String.format("$%.2f", item.getPrice());
+                            System.out.println(item.getRow() + " " + item.getName() + " " + price + " Inventory Remaining: " + item.getInventory());
                             System.out.println();
                         }
                         System.out.println("Select an item(ex. A2):");
                         Scanner userInput = new Scanner(System.in);
                         String userRowSelection = userInput.nextLine();
                         //validate user input then do the rest on business side (purchasing etc)
-                        awesomeVendingMachine.isValidSelection(userRowSelection);
-                        awesomeVendingMachine.purchaseItem(userRowSelection);
 
+                        //try multiple catches
+                        try {
+                            awesomeVendingMachine.purchaseItem(userRowSelection);
+                        } catch (ItemSoldOutException e) {
+                            System.out.println("Sorry, item sold out");
+                        } catch (InsufficientFundsException e) {
+                            System.out.println("Insufficient balance. Please add money");
+                        } catch (InvalidSelectionException e) {
+                            System.out.println("Sorry, invalid selection. Please try again.");
+                        }
 
                     } else if (transaction.equals(SECOND_MAIN_MENU_OPTION_FINISH_TRANSACTION)) {
                         ChangeMaker changeOutput = awesomeVendingMachine.makeChange();
-                        //TODO format quarters etc
                         System.out.println("Your change is: " + changeOutput.getQuarters() + " " + "quarters, " + changeOutput.getDimes() + " " + "dimes, " + changeOutput.getNickels() + " " + "nickels");
                         //give change and log the purchase
                         isShopping = false;
