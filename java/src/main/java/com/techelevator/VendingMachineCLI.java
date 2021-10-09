@@ -44,9 +44,12 @@ public class VendingMachineCLI {
             if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
                 List<Edible> items = awesomeVendingMachine.getItems();
                 for (Edible item : items) {
-
+                    String inventory = String.valueOf(item.getInventory());
+                    if(item.getInventory() == 0){
+                        inventory = "SOLD OUT";
+                    }
                     String price = String.format("$%.2f", item.getPrice());
-                    System.out.println(item.getRow() + " " + item.getName() + " " + price + " Inventory Remaining: " + item.getInventory());
+                    System.out.println(item.getRow() + " " + item.getName() + " " + price + " Inventory Remaining: " + inventory);
                     System.out.println();
                 }
 
@@ -80,9 +83,12 @@ public class VendingMachineCLI {
                         String userRow;
                         for (Edible item : items) {
                             userRow = item.getRow();
-
+                            String inventory = String.valueOf(item.getInventory());
+                            if(item.getInventory() == 0){
+                                inventory = "SOLD OUT";
+                            }
                             String price = String.format("$%.2f", item.getPrice());
-                            System.out.println(item.getRow() + " " + item.getName() + " " + price + " Inventory Remaining: " + item.getInventory());
+                            System.out.println(item.getRow() + " " + item.getName() + " " + price + " Inventory Remaining: " + inventory);
                             System.out.println();
                         }
                         System.out.println("Select an item(ex. A2):");

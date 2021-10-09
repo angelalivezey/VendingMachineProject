@@ -2,10 +2,12 @@ package com.techelevator.view;
 
 import org.junit.Test;
 
-public class PurchaseItemTest {
+public class VendingLogTests {
 
-    @Test(expected = InvalidSelectionException.class)
+
+    @Test(expected = VendingLogException.class)
     public void test_name(){
         //if exception ISN't thrown, the test fails
     }
+
 }

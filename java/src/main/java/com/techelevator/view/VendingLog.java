@@ -34,7 +34,6 @@ public class VendingLog {
             VendingLogException logException = new VendingLogException(e.getMessage());
             throw logException;
         }catch(IOException e){
-
             throw new VendingLogException((e.getMessage())); //line 34 can be written as line 38
         }
 

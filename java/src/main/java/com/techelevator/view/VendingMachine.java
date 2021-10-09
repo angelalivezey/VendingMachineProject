@@ -85,7 +85,7 @@ public class VendingMachine {
                         itemInventory = item.getInventory();
                         int newInventory = itemInventory - 1;
                         item.setInventory(newInventory);
-
+//
                         //System.out.println(item.getName() + " " + item.getPrice() + " " + remainingBalance + " " + item.getDisplayMessage());
                         System.out.printf("$%.2f $%.2f", item.getPrice(), remainingBalance);
                         System.out.println(" " + item.getDisplayMessage());
@@ -95,8 +95,7 @@ public class VendingMachine {
                         String purchaseItemMessage = item.getName() + " " + item.getRow() + " " + formatNumbers;
                         vendingLog.logTransaction(purchaseItemMessage);
                     } else {
-                        //throw new ItemSoldOutException();
-                        System.out.println("Sorry, item is sold out.");
+                        throw new ItemSoldOutException();
                     }
                 }
             }
