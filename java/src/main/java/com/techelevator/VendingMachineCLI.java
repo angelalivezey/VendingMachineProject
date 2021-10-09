@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class VendingMachineCLI {
+    VendingLog vendingLog = new VendingLog();
 
     //Instance
     private VendingMachine awesomeVendingMachine = new VendingMachine();
@@ -66,6 +67,7 @@ public class VendingMachineCLI {
                         } else {
                             System.out.println("Enter the dollar amount with dollar sign");
                         }
+
                     } else if (transaction.equals(SECOND_MAIN_MENU_OPTION_SELECT_PRODUCT)) {
                         //purchase items stuff!
                         List<Edible> items = awesomeVendingMachine.getItems();

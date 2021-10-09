@@ -11,13 +11,18 @@ public class VendingMachine {
     double remainingBalance = balance;
     Inventory inventory = new Inventory();
     List<Edible> items = inventory.getVmItems();
+    VendingLog vendingLog = new VendingLog();
 
 
     public double feedMoney(double moneyGiven) {
         balance += moneyGiven;
-        System.out.println("Current Balance is: " + "$" + balance);
-        return balance;
+        //System.out.println("Current Balance is: " + "$" + balance);
+        System.out.printf("Current Balance is: %.2f",balance);
 
+
+        String feedMoneyMessage = "FEED MONEY: " + "$" +moneyGiven + " " + "$" + balance;
+        vendingLog.logTransaction(feedMoneyMessage);
+        return balance;
     }
 
     public boolean isValidSelection(String userRowSelection) {
@@ -41,11 +46,15 @@ public class VendingMachine {
 
     public ChangeMaker makeChange() {
         ChangeMaker makeChange = new ChangeMaker(remainingBalance);
+        balance = balance - remainingBalance;
+
+        String giveChangeMessage = "GIVE CHANGE: " +" "+ "$"+ remainingBalance +" "+ "$"+ balance;
+        vendingLog.logTransaction(giveChangeMessage);
+
         return makeChange;
     }
 
 
-    //purchase method: row
     public String purchaseItem(String userRowSelection) {
 
         int itemInventory = 0;
@@ -60,10 +69,22 @@ public class VendingMachine {
                                 System.out.println("Insufficient balance. Please add money");
                                 break;
                             }
+                            double originalBalance = balance;
                             remainingBalance = balance - item.getPrice();
+                            //double newBalance = balance - item.getPrice();
                             balance = remainingBalance;
-                            itemInventory = item.getInventory() - 1;
-                            System.out.println(item.getName() + " " + item.getPrice() + " " + remainingBalance + " " + item.getDisplayMessage());
+                            itemInventory = item.getInventory();
+                            int newInventory = itemInventory - 1;
+                            item.setInventory(newInventory);
+
+
+                            //System.out.println(item.getName() + " " + item.getPrice() + " " + remainingBalance + " " + item.getDisplayMessage());
+                            System.out.printf("$%.2f $%.2f",item.getPrice(), remainingBalance);
+                            System.out.println(item.getDisplayMessage());
+
+
+                            String purchaseItemMessage = item.getName() + " " + item.getRow() + " "+ "$" + originalBalance + " "+ "$"+ remainingBalance;
+                            vendingLog.logTransaction(purchaseItemMessage);
                         } else {
                             System.out.println("Item is sold out");
                         }

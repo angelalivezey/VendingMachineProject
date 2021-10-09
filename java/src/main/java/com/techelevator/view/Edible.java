@@ -61,6 +61,9 @@ public class Edible {
         return inventory;
     }
 
+    public void setInventory(int inventory) {
+        this.inventory = inventory;
+    }
 
     public String getDisplayMessage() {
         return displayMessage;
