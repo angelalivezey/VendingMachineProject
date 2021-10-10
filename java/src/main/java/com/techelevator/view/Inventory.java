@@ -17,9 +17,15 @@ public class Inventory {
         return vmItems;
     }
 
-    private void loadItems() {
-        //make return class
-        //move to inventory class
+    /**
+     * method loads the Vending Machine once with all items set to Max Inventory (5)
+     * splits vendingmachine.csv into lines
+     * each line is further split into row, name, price, and type
+     * further assigned to corresponding type class
+     *
+     */
+    private void loadItems()  {
+
         File vendingMachineFile = new File("vendingmachine.csv");
         try (Scanner readVMFile = new Scanner(vendingMachineFile)) {
             while (readVMFile.hasNextLine()) {
@@ -28,10 +34,10 @@ public class Inventory {
                 Edible vmItem = new Edible();
                 for (int i = 0; i < splitStr.length; i++) {
                     //A1|Potato Crisps|3.05|Chip
-                    vmItem.setRow(splitStr[0]);
-                    vmItem.setName(splitStr[1]);
-                    vmItem.setPrice(Double.parseDouble(splitStr[2]));
-                    vmItem.setItemType(splitStr[3]);
+                    vmItem.setRow(splitStr[0]);//A1
+                    vmItem.setName(splitStr[1]);//Potato Crisps
+                    vmItem.setPrice(Double.parseDouble(splitStr[2])); //3.05
+                    vmItem.setItemType(splitStr[3]);//Chip
                     if(splitStr[3].equalsIgnoreCase("chip")){
                         Chip chippity = new Chip(splitStr[0],splitStr[1],Double.parseDouble(splitStr[2]));
                         vmItems.add(chippity);
@@ -45,8 +51,6 @@ public class Inventory {
                         Gum gumItem = new Gum(splitStr[0], splitStr[1], Double.parseDouble(splitStr[2]));
                         vmItems.add(gumItem);
                     }
-//                    System.out.println(vmItem.getRow() + " " + vmItem.getName() + " " + vmItem.getPrice());
-
                     break;
 
                 }

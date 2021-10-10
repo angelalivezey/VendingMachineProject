@@ -19,9 +19,7 @@ public class Edible {
     public Edible(String row, String name, double price){
         this.name = name;
         this.price = price;
-        this.displayMessage = displayMessage;
         this.row = row;
-        this.itemType = itemType;
         this.inventory = MAX_AMOUNT;
     }
 

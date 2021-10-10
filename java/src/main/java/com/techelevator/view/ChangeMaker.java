@@ -9,10 +9,11 @@ public class ChangeMaker {
     private int nickels;
 
 
-
-//take double convert to an int,
-//convert to pennies
-
+    /**
+     *
+     * @param remainingBalance from purchaseItem method is then converted to pennies and further divided into each change type
+     * the change type in pennies is a static final variable in the change maker class.
+     */
     public ChangeMaker(double remainingBalance) {
         int remainingBalanceInPennies = (int) (remainingBalance * 100);
 
@@ -37,22 +38,6 @@ public class ChangeMaker {
     public int getNickels() {
         return nickels;
     }
-
-    //"Your balance was: " newBalance
-//"Your change is: " q + d + n
-
-    //gives change
-    //gets balance
-    //subtracts purchase amount
-    //updates balance
-    //update feed money method to have remaining balance
-    //take remaining balance and divide it into quarters,dimes,nickels
-    //assign to remaining balance and print
-
-    //Instance of a change maker
-    //print line in the user interface
-    //change maker result
-    //CLI getters
 
 
 }
